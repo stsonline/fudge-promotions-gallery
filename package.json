@@ -1,0 +1,27 @@
+{
+  "name": "fudge-promotions-gallery",
+  "version": "0.1.0",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:library": "vue-cli-service build --target lib --inline-vue",
+    "build:wc": "vue-cli-service build --target wc --name fudge-promotions-gallery src/components/FudgePromotionsGallery.vue"
+  },
+  "dependencies": {
+    "axios": "0.27.2",
+    "core-js": "3.26.0",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "vue": "2.7.13"
+  },
+  "devDependencies": {
+    "@babel/core": "7.19.6",
+    "@vue/cli-plugin-babel": "5.0.8",
+    "@vue/cli-service": "5.0.8",
+    "vue-template-compiler": "2.7.13"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
