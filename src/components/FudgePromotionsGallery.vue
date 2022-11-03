@@ -157,15 +157,15 @@ export default {
   props: {
     apiUrl: {
       type: String,
-      default: 'https://api.fudge.tech/'
+      default: 'http://127.0.0.1:8000/'
     },
     uuid: {
       type: String,
-      default: ''
+      default: 'ddb5f29d-63f9-4679-8b43-f504b5b8f9f6'
     },
     slug: {
       tpe: String,
-      default: ''
+      default: 'carousel'
     },
     displayType: {
       type: String,
