@@ -251,7 +251,7 @@ export default {
     },
     displayType: {
       type: String,
-      default: 'carousel-mini'
+      default: 'carousel'
     },
     options: {
       type: Object
