@@ -246,7 +246,7 @@ export default {
       default: 'ddb5f29d-63f9-4679-8b43-f504b5b8f9f6'
     },
     slug: {
-      tpe: String,
+      type: String,
       default: 'carousel'
     },
     displayType: {
