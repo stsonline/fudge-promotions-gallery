@@ -50,3 +50,11 @@ To deploy the package, you'll need to ensure that you've installed Vue JS as an 
 <!-- use in plain HTML, or in any other framework -->
 <fudge-promotions-gallery></fudge-promotions-gallery>
 ```
+
+### Configuring variables
+
+In the project where you're including the component, you should configure the prop variables, for example, in a Laravel project you might wish to do the following for the `uuid` prop:
+
+```
+env('FUDGE_PROMOTIONS_GALLERY_UUID', '2a9ea791-8c35-4094-9f78-083a5546242c')
+```
