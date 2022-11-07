@@ -5,7 +5,7 @@
       <div class="fpg-border-spinner fpg-border-spinner-primary fpg-mb-1" role="status"></div>
       <h2 class="fpg-main-title">Loading promotions...</h2>
       <p class="fpg-main-subtitle">
-        We're just loading available promotions, please wait...
+        We're just loading available promotions, please wait.
       </p>
     </article>
     <article v-else>
@@ -29,7 +29,7 @@
             <div
               class="fpg-gallery-cell"
               v-for="(promotion, promotionIndex) in promotions"
-              v-show="(carousel.slides.current == promotionIndex-1 || carousel.slides.current == promotionIndex || carousel.slides.current == promotionIndex+1)"
+              v-if="(carousel.slides.current == promotionIndex-1 || carousel.slides.current == promotionIndex || carousel.slides.current == promotionIndex+1)"
               :class="{ 'fpg-gallery-cell-active': carousel.slides.current == promotionIndex, 'fpg-gallery-cell-active-previous': carousel.slides.current == promotionIndex+1 }"
               :key="`slide-${promotionIndex}`">
 
@@ -69,11 +69,11 @@
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
-                <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourte-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
-                  <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="#10b981" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16">
+                <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
+                  <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" class="fpg-favourite-icon">
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16" class="fpg-favourite-icon">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                   </svg>
                 </button>
@@ -109,7 +109,7 @@
             <div
               class="fpg-gallery-cell"
               v-for="(promotion, promotionIndex) in promotions"
-              v-show="carousel.slides.current == promotionIndex"
+              v-if="carousel.slides.current == promotionIndex"
               :class="{ 'fpg-gallery-cell-active': carousel.slides.current == promotionIndex }"
               :key="`slide-${promotionIndex}`">
 
@@ -149,11 +149,11 @@
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
-                <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourte-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
-                  <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="#10b981" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16">
+                <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
+                  <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" class="fpg-favourite-icon">
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16" class="fpg-favourite-icon">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                   </svg>
                 </button>
@@ -209,11 +209,11 @@
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
-                <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourte-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
-                  <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="#10b981" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16">
+                <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
+                  <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16" height="16" class="fpg-favourite-icon">
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16" class="fpg-favourite-icon">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                   </svg>
                 </button>
@@ -287,6 +287,17 @@ export default {
     /*
     ** Get options
     */
+    getAxiosInstance () {
+      if (process.env.NODE_ENV == 'production') {
+        return axios || window.axios
+      }
+
+      return this.$axios
+    },
+
+    /*
+    ** Get options
+    */
     getOptions () {
       return {
         ...this.settings,
@@ -315,7 +326,7 @@ export default {
       this.isLoading = true
 
       try {
-        const promotions = (await this.$axios.get(`${this.getApiUrl()}/promotions`, {
+        const promotions = (await this.getAxiosInstance().get(`${this.getApiUrl()}/promotions`, {
           timeout: 15 * 1000,
           params: {
             uuid: this.uuid,
@@ -350,7 +361,7 @@ export default {
     async logPromotionSession () {
       this.dispatchPluginEvent('fpg:on:promotion-view')
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_session',
           uuid: this.uuid,
           slug: this.slug
@@ -368,7 +379,7 @@ export default {
       this.promotions[index].is_favourited = true
 
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_favourite',
           promotion_id: promotion.id,
           uuid: this.uuid,
@@ -388,7 +399,7 @@ export default {
 
       // record click
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_click',
           promotion_id: promotion.id,
           uuid: this.uuid,
@@ -401,12 +412,14 @@ export default {
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
         window.open(promotion.url)
+        this.promotions[index].is_redirecting = false
         return
       }
 
       // redirect existing tab
       window.location.replace(promotion.url)
       window.location.href = promotion.url
+      this.promotions[index].is_redirecting = false
     },
 
     /*

@@ -1,11 +1,11 @@
 {
   "name": "fudge-promotions-gallery",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:library": "vue-cli-service build --target lib --inline-vue",
-    "build:wc": "vue-cli-service build --target wc --name fudge-promotions-gallery src/components/FudgePromotionsGallery.vue"
+    "build:library": "vue-cli-service build --mode production --target lib --inline-vue",
+    "build:wc": "vue-cli-service build --mode production --target wc --name fudge-promotions-gallery src/components/FudgePromotionsGallery.vue"
   },
   "dependencies": {
     "axios": "0.27.2",
