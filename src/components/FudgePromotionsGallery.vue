@@ -351,7 +351,9 @@ export default {
       this.dispatchPluginEvent('fpg:on:promotion-view')
       try {
         await this.$axios.post(`${this.getApiUrl()}/promotions`, {
-          action: 'record_session'
+          action: 'record_session',
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 5 * 1000
         })
@@ -368,7 +370,9 @@ export default {
       try {
         await this.$axios.post(`${this.getApiUrl()}/promotions`, {
           action: 'record_favourite',
-          promotion_id: promotion.id
+          promotion_id: promotion.id,
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 10 * 1000
         })
@@ -386,7 +390,9 @@ export default {
       try {
         await this.$axios.post(`${this.getApiUrl()}/promotions`, {
           action: 'record_click',
-          promotion_id: promotion.id
+          promotion_id: promotion.id,
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 3 * 1000
         })
