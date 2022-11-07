@@ -542,11 +542,6 @@
 
 @media (max-width: 767px) {
 
-  /* carousel */
-  .fpg-gallery-cell-active-previous {
-    margin-left: -222px;
-  }
-
   /* lists */
   .fpg-list-card-media {
     min-width: auto;
