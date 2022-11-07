@@ -278,6 +278,18 @@ export default {
     }
   },
   mounted () {
+    console.log('foo')
+
+    this.$axios.get(`${this.getApiUrl()}/promotions`, {
+      timeout: 15 * 1000,
+      params: {
+        uuid: this.uuid,
+        slug: this.slug
+      }
+    }).finally(() => {
+      console.log('yayyyyy')
+    })
+
     this.dispatchPluginEvent('fpg:on:load')
     this.getPromotions()
     this.logPromotionSession()
