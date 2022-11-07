@@ -1,5 +1,6 @@
 /* vars */
-:root {
+:root,
+:host {
   --fpg-color-primary: #9333ea;
   --fpg-color-primary-darken: #7e22ce;
 }
