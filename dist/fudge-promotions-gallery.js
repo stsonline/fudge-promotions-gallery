@@ -1,15 +1,15 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 6222:
+/***/ 3840:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_64086da5_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2070);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_64086da5_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_64086da5_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(902);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_64086da5_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_64086da5_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
 /* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
@@ -1934,7 +1934,7 @@ if (PolyfilledDOMExceptionPrototype.constructor !== PolyfilledDOMException) {
 
 /***/ }),
 
-/***/ 1455:
+/***/ 3213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6803,20 +6803,20 @@ module.exports = function whichTypedArray(value) {
 
 /***/ }),
 
-/***/ 2070:
+/***/ 902:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(1455);
+var content = __webpack_require__(3213);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add CSS to Shadow Root
 var add = (__webpack_require__(7810)/* ["default"] */ .Z)
 module.exports.__inject__ = function (shadowRoot) {
-  add("aee8150a", content, shadowRoot)
+  add("07e42a46", content, shadowRoot)
 };
 
 /***/ }),
@@ -7417,7 +7417,7 @@ function addStyle(obj /* StyleObjectPart */, shadowRoot) {
     styleElement.appendChild(document.createTextNode(css));
   }
 }
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/FudgePromotionsGallery.vue?vue&type=template&id=64086da5&scoped=true&shadow
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/FudgePromotionsGallery.vue?vue&type=template&id=190441eb&scoped=true&shadow
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -7987,21 +7987,20 @@ var staticRenderFns = [];
     };
   },
   mounted() {
-    console.log('foo');
-    this.$axios.get(`${this.getApiUrl()}/promotions`, {
-      timeout: 15 * 1000,
-      params: {
-        uuid: this.uuid,
-        slug: this.slug
-      }
-    }).finally(() => {
-      console.log('yayyyyy');
-    });
     this.dispatchPluginEvent('fpg:on:load');
     this.getPromotions();
     this.logPromotionSession();
   },
   methods: {
+    /*
+    ** Get options
+    */
+    getAxiosInstance() {
+      if (true) {
+        return axios || window.axios;
+      }
+      return this.$axios;
+    },
     /*
     ** Get options
     */
@@ -8029,7 +8028,7 @@ var staticRenderFns = [];
     async getPromotions() {
       this.isLoading = true;
       try {
-        const promotions = (await this.$axios.get(`${this.getApiUrl()}/promotions`, {
+        const promotions = (await this.getAxiosInstance().get(`${this.getApiUrl()}/promotions`, {
           timeout: 15 * 1000,
           params: {
             uuid: this.uuid,
@@ -8059,7 +8058,7 @@ var staticRenderFns = [];
     async logPromotionSession() {
       this.dispatchPluginEvent('fpg:on:promotion-view');
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_session'
         }, {
           timeout: 5 * 1000
@@ -8073,7 +8072,7 @@ var staticRenderFns = [];
       this.dispatchPluginEvent('fpg:on:promotion-favourite');
       this.promotions[index].is_favourited = true;
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_favourite',
           promotion_id: promotion.id
         }, {
@@ -8090,7 +8089,7 @@ var staticRenderFns = [];
 
       // record click
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_click',
           promotion_id: promotion.id
         }, {
@@ -8297,7 +8296,7 @@ function normalizeComponent(
 
 function injectStyles (context) {
   
-  var style0 = __webpack_require__(6222)
+  var style0 = __webpack_require__(3840)
 if (style0.__inject__) style0.__inject__(context)
 
 }
@@ -8310,7 +8309,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   injectStyles,
-  "64086da5",
+  "190441eb",
   null
   ,true
 )

@@ -278,23 +278,22 @@ export default {
     }
   },
   mounted () {
-    console.log('foo')
-
-    this.$axios.get(`${this.getApiUrl()}/promotions`, {
-      timeout: 15 * 1000,
-      params: {
-        uuid: this.uuid,
-        slug: this.slug
-      }
-    }).finally(() => {
-      console.log('yayyyyy')
-    })
-
     this.dispatchPluginEvent('fpg:on:load')
     this.getPromotions()
     this.logPromotionSession()
   },
   methods: {
+
+    /*
+    ** Get options
+    */
+    getAxiosInstance () {
+      if (process.env.NODE_ENV == 'production') {
+        return axios || window.axios
+      }
+
+      return this.$axios
+    },
 
     /*
     ** Get options
@@ -327,7 +326,7 @@ export default {
       this.isLoading = true
 
       try {
-        const promotions = (await this.$axios.get(`${this.getApiUrl()}/promotions`, {
+        const promotions = (await this.getAxiosInstance().get(`${this.getApiUrl()}/promotions`, {
           timeout: 15 * 1000,
           params: {
             uuid: this.uuid,
@@ -362,7 +361,7 @@ export default {
     async logPromotionSession () {
       this.dispatchPluginEvent('fpg:on:promotion-view')
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_session'
         }, {
           timeout: 5 * 1000
@@ -378,7 +377,7 @@ export default {
       this.promotions[index].is_favourited = true
 
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_favourite',
           promotion_id: promotion.id
         }, {
@@ -396,7 +395,7 @@ export default {
 
       // record click
       try {
-        await this.$axios.post(`${this.getApiUrl()}/promotions`, {
+        await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_click',
           promotion_id: promotion.id
         }, {
