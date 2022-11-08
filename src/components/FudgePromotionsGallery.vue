@@ -281,13 +281,17 @@ export default {
         }
       },
       isLoading: true,
-      promotions: []
+      promotions: [],
+      applicant: null
     }
   },
   mounted () {
-    this.dispatchPluginEvent('fpg:on:load')
-    this.getPromotions()
-    this.logPromotionSession()
+    this.initFpgEventListeners()
+
+    // delay to give event listeners time to set
+    setTimeout(() => {
+      this.initWebComponent()
+    }, 100)
   },
   methods: {
 
@@ -300,6 +304,15 @@ export default {
       }
 
       return this.$axios
+    },
+
+    /*
+    ** Kick-start the web component
+    */
+    initWebComponent () {
+      this.dispatchPluginEvent('fpg:on:load')
+      this.getPromotions()
+      this.logPromotionSession()
     },
 
     /*
@@ -332,12 +345,15 @@ export default {
     async getPromotions () {
       this.isLoading = true
 
+      console.log('here')
+
       try {
         const promotions = (await this.getAxiosInstance().get(`${this.getApiUrl()}/promotions`, {
           timeout: 15 * 1000,
           params: {
             uuid: this.uuid,
-            slug: this.slug
+            slug: this.slug,
+            applicant: this.applicant
           }
         })).data.promotions
 
@@ -511,8 +527,16 @@ export default {
     /*
     ** init custom event listeners
     */
-    initEventListeners () {
+    initFpgEventListeners () {
       const self = this
+
+      // init the plugin
+      document.addEventListener('fpg:init', this.initWebComponent)
+
+      // set an applicant
+      document.addEventListener('fpg:applicant:set', function (evt) {
+        self.applicant = evt.detail
+      }, false)
 
       // init the carousel
       document.addEventListener('fpg:carousel:init', function (evt) {
@@ -522,6 +546,7 @@ export default {
       // init the carousel
       document.addEventListener('fpg:carousel:pause', function (evt) {
         self.carousel.isPaused = true
+        clearTimeout(this.carousel.interval)
       }, false)
 
       // init the carousel
