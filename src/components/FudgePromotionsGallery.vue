@@ -34,8 +34,11 @@
               :key="`slide-${promotionIndex}`">
 
               <!-- Promotion # number -->
-              <div class="fpg-gallery-cell-number">
+              <div v-if="promotionIndex+1 < carousel.slides.initialTotal" class="fpg-gallery-cell-number">
                 {{ promotionIndex+1 }} / {{ carousel.slides.initialTotal }}
+              </div>
+              <div v-else class="fpg-gallery-cell-number">
+                {{ promotionIndex+1 }}
               </div>
 
               <!-- gallery media -->
@@ -114,8 +117,11 @@
               :key="`slide-${promotionIndex}`">
 
               <!-- Promotion # number -->
-              <div class="fpg-gallery-cell-number">
+              <div v-if="promotionIndex+1 < carousel.slides.initialTotal" class="fpg-gallery-cell-number">
                 {{ promotionIndex+1 }} / {{ carousel.slides.initialTotal }}
+              </div>
+              <div v-else class="fpg-gallery-cell-number">
+                {{ promotionIndex+1 }}
               </div>
 
               <!-- gallery media -->
@@ -269,6 +275,7 @@ export default {
         isPaused: false,
         slides: {
           current: 0,
+          displayCurrent: 1,
           total: 0,
           initialTotal: 0
         }
@@ -362,7 +369,9 @@ export default {
       this.dispatchPluginEvent('fpg:on:promotion-view')
       try {
         await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
-          action: 'record_session'
+          action: 'record_session',
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 5 * 1000
         })
@@ -379,7 +388,9 @@ export default {
       try {
         await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_favourite',
-          promotion_id: promotion.id
+          promotion_id: promotion.id,
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 10 * 1000
         })
@@ -397,7 +408,9 @@ export default {
       try {
         await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_click',
-          promotion_id: promotion.id
+          promotion_id: promotion.id,
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 3 * 1000
         })
@@ -406,12 +419,14 @@ export default {
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
         window.open(promotion.url)
+        this.promotions[index].is_redirecting = false
         return
       }
 
       // redirect existing tab
       window.location.replace(promotion.url)
       window.location.href = promotion.url
+      this.promotions[index].is_redirecting = false
     },
 
     /*
@@ -421,13 +436,22 @@ export default {
       this.carousel.slides.total = this.promotions.length
 
       for (const [index, promotion] of this.promotions.entries()) {
-        this.promotions[index].current_progress = 0
+        if (this.promotions[index] != null) {
+          this.promotions[index].current_progress = 0
+        }
       }
 
-      this.promotions[this.carousel.slides.current].current_progress = 100
+      if (this.promotions[this.carousel.slides.current] != null) {
+        this.promotions[this.carousel.slides.current].current_progress = 100
+      }
 
       clearTimeout(this.carousel.interval)
       this.carousel.interval = setTimeout(() => {
+
+        if (this.carousel.slides.current >= this.carousel.slides.initialTotal) {
+          this.initCarousel()
+          return
+        }
 
         // if carousel is paused
         if (this.carousel.isPaused) {
@@ -435,15 +459,9 @@ export default {
           return
         }
 
-        // this.promotions.push(this.promotions[this.carousel.slides.current])
         this.carousel.slides.current++
 
-        if (this.carousel.slides.current >= this.carousel.slides.initialTotal) {
-          this.carousel.slides.current = 0
-        }
-
         this.initCarousel()
-
       }, this.getOptions().delay)
     },
 
@@ -451,30 +469,32 @@ export default {
     ** Move carousel
     */
     moveCarousel (direction = 'next') {
-
-      if (this.getOptions().autoplay) {
-        this.initCarousel()
-      }
-
       if (direction == 'prev') {
         if (this.carousel.slides.current < 1) {
           return
         }
 
-        this.promotions[this.carousel.slides.current].current_progress = 0
+        if (this.promotions[this.carousel.slides.current] != null) {
+          this.promotions[this.carousel.slides.current].current_progress = 0
+        }
+
         this.carousel.slides.current--
         return
       }
 
-      // this.promotions.push(this.promotions.shift())
-      // this.promotions.push(this.promotions[this.carousel.slides.current])
-      if (this.carousel.slides.current >= this.carousel.slides.initialTotal-1) {
+      if (this.carousel.slides.current >= this.carousel.slides.initialTotal) {
         return
       }
 
-
       this.carousel.slides.current++
-      this.promotions[this.carousel.slides.current].current_progress = 100
+
+      if (this.promotions[this.carousel.slides.current] != null) {
+        this.promotions[this.carousel.slides.current].current_progress = 100
+      }
+
+      if (this.getOptions().autoplay) {
+        this.initCarousel()
+      }
     },
 
     /*

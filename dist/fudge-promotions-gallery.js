@@ -1,15 +1,15 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 3840:
+/***/ 7234:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(902);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_7f07b28b_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6816);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_7f07b28b_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_7f07b28b_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_190441eb_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_7f07b28b_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _node_modules_vue_style_loader_index_js_clonedRuleSet_12_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_vue_loader_v15_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_vue_loader_v15_lib_index_js_vue_loader_options_FudgePromotionsGallery_vue_vue_type_style_index_0_id_7f07b28b_prod_scoped_true_lang_css_shadow__WEBPACK_IMPORTED_MODULE_0__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
 /* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
@@ -1934,7 +1934,7 @@ if (PolyfilledDOMExceptionPrototype.constructor !== PolyfilledDOMException) {
 
 /***/ }),
 
-/***/ 3213:
+/***/ 519:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6803,20 +6803,20 @@ module.exports = function whichTypedArray(value) {
 
 /***/ }),
 
-/***/ 902:
+/***/ 6816:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(3213);
+var content = __webpack_require__(519);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add CSS to Shadow Root
 var add = (__webpack_require__(7810)/* ["default"] */ .Z)
 module.exports.__inject__ = function (shadowRoot) {
-  add("07e42a46", content, shadowRoot)
+  add("70d91a93", content, shadowRoot)
 };
 
 /***/ }),
@@ -7417,7 +7417,7 @@ function addStyle(obj /* StyleObjectPart */, shadowRoot) {
     styleElement.appendChild(document.createTextNode(css));
   }
 }
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/FudgePromotionsGallery.vue?vue&type=template&id=190441eb&scoped=true&shadow
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/FudgePromotionsGallery.vue?vue&type=template&id=7f07b28b&scoped=true&shadow
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -8059,7 +8059,9 @@ var staticRenderFns = [];
       this.dispatchPluginEvent('fpg:on:promotion-view');
       try {
         await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
-          action: 'record_session'
+          action: 'record_session',
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 5 * 1000
         });
@@ -8074,7 +8076,9 @@ var staticRenderFns = [];
       try {
         await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_favourite',
-          promotion_id: promotion.id
+          promotion_id: promotion.id,
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 10 * 1000
         });
@@ -8091,7 +8095,9 @@ var staticRenderFns = [];
       try {
         await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_click',
-          promotion_id: promotion.id
+          promotion_id: promotion.id,
+          uuid: this.uuid,
+          slug: this.slug
         }, {
           timeout: 3 * 1000
         });
@@ -8100,12 +8106,14 @@ var staticRenderFns = [];
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
         window.open(promotion.url);
+        this.promotions[index].is_redirecting = false;
         return;
       }
 
       // redirect existing tab
       window.location.replace(promotion.url);
       window.location.href = promotion.url;
+      this.promotions[index].is_redirecting = false;
     },
     /*
     ** Init carousel
@@ -8296,7 +8304,7 @@ function normalizeComponent(
 
 function injectStyles (context) {
   
-  var style0 = __webpack_require__(3840)
+  var style0 = __webpack_require__(7234)
 if (style0.__inject__) style0.__inject__(context)
 
 }
@@ -8309,7 +8317,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   injectStyles,
-  "190441eb",
+  "7f07b28b",
   null
   ,true
 )
