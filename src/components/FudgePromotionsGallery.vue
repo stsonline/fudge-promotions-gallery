@@ -282,7 +282,11 @@ export default {
       },
       isLoading: true,
       promotions: [],
-      applicant: null
+      applicant: null,
+      attribution: {
+        affiliate: 'fudge_gallery',
+        campaign: 'fudge_gallery'
+      }
     }
   },
   mounted () {
@@ -311,8 +315,34 @@ export default {
     */
     initWebComponent () {
       this.dispatchPluginEvent('fpg:on:load')
+      this.setAttributionDetails()
       this.getPromotions()
       this.logPromotionSession()
+    },
+
+    /*
+    ** Set attribution details via different methods
+    */
+    setAttributionDetails () {
+
+      // set affiliate
+      if (this.getOptions().attribution_affiliate && this.getOptions().attribution_affiliate != '') {
+        this.attribution.affiliate = this.getOptions().attribution_affiliate
+      }
+
+      if (this.applicant && (this.applicant.attribution_affiliate && this.applicant.attribution_affiliate != '')) {
+        this.attribution.affiliate = this.applicant.attribution_affiliate
+      }
+
+      // set campaign
+      if (this.getOptions().attribution_campaign && this.getOptions().attribution_campaign != '') {
+        this.attribution.campaign = this.getOptions().attribution_campaign
+      }
+
+      if (this.applicant && (this.applicant.attribution_campaign && this.applicant.attribution_campaign != '')) {
+        this.attribution.campaign = this.applicant.attribution_campaign
+      }
+
     },
 
     /*
@@ -340,12 +370,27 @@ export default {
     },
 
     /*
+    ** Get formatted offer URL with
+    */
+    getParsedPromotionUrl (url = '') {
+      let formattedUrl = url
+
+      if (url.includes('{attribution_affiliate}')) {
+        formattedUrl = url.replace('{attribution_affiliate}', this.attribution.affiliate)
+      }
+
+      if (url.includes('{attribution_campaign}')) {
+        formattedUrl = url.replace('{attribution_campaign}', this.attribution.campaign)
+      }
+
+      return formattedUrl
+    },
+
+    /*
     ** Get promotions
     */
     async getPromotions () {
       this.isLoading = true
-
-      console.log('here')
 
       try {
         const promotions = (await this.getAxiosInstance().get(`${this.getApiUrl()}/promotions`, {
@@ -432,16 +477,18 @@ export default {
         })
       } catch (err) { }
 
+      const promotionUrl = this.getParsedPromotionUrl(promotion.url)
+
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
-        window.open(promotion.url)
+        window.open(promotionUrl)
         this.promotions[index].is_redirecting = false
         return
       }
 
       // redirect existing tab
-      window.location.replace(promotion.url)
-      window.location.href = promotion.url
+      window.location.replace(promotionUrl)
+      window.location.href = promotionUrl
       this.promotions[index].is_redirecting = false
     },
 
