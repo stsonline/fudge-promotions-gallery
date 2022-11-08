@@ -584,6 +584,7 @@ export default {
       // set an applicant
       document.addEventListener('fpg:applicant:set', function (evt) {
         self.applicant = evt.detail
+        self.setAttributionDetails()
       }, false)
 
       // init the carousel
