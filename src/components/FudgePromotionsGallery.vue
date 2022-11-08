@@ -260,7 +260,8 @@ export default {
       default: 'carousel'
     },
     options: {
-      type: Object
+      type: String,
+      default: '{}'
     }
   },
   data () {
@@ -351,7 +352,7 @@ export default {
     getOptions () {
       return {
         ...this.settings,
-        ...this.options
+        ...JSON.parse(this.options)
       }
     },
 
