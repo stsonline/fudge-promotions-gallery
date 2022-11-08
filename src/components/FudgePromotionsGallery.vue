@@ -281,13 +281,21 @@ export default {
         }
       },
       isLoading: true,
-      promotions: []
+      promotions: [],
+      applicant: null,
+      attribution: {
+        affiliate: 'fudge_gallery',
+        campaign: 'fudge_gallery'
+      }
     }
   },
   mounted () {
-    this.dispatchPluginEvent('fpg:on:load')
-    this.getPromotions()
-    this.logPromotionSession()
+    this.initFpgEventListeners()
+
+    // delay to give event listeners time to set
+    setTimeout(() => {
+      this.initWebComponent()
+    }, 100)
   },
   methods: {
 
@@ -300,6 +308,41 @@ export default {
       }
 
       return this.$axios
+    },
+
+    /*
+    ** Kick-start the web component
+    */
+    initWebComponent () {
+      this.dispatchPluginEvent('fpg:on:load')
+      this.setAttributionDetails()
+      this.getPromotions()
+      this.logPromotionSession()
+    },
+
+    /*
+    ** Set attribution details via different methods
+    */
+    setAttributionDetails () {
+
+      // set affiliate
+      if (this.getOptions().attribution_affiliate && this.getOptions().attribution_affiliate != '') {
+        this.attribution.affiliate = this.getOptions().attribution_affiliate
+      }
+
+      if (this.applicant && (this.applicant.attribution_affiliate && this.applicant.attribution_affiliate != '')) {
+        this.attribution.affiliate = this.applicant.attribution_affiliate
+      }
+
+      // set campaign
+      if (this.getOptions().attribution_campaign && this.getOptions().attribution_campaign != '') {
+        this.attribution.campaign = this.getOptions().attribution_campaign
+      }
+
+      if (this.applicant && (this.applicant.attribution_campaign && this.applicant.attribution_campaign != '')) {
+        this.attribution.campaign = this.applicant.attribution_campaign
+      }
+
     },
 
     /*
@@ -327,6 +370,23 @@ export default {
     },
 
     /*
+    ** Get formatted offer URL with
+    */
+    getParsedPromotionUrl (url = '') {
+      let formattedUrl = url
+
+      if (url.includes('{attribution_affiliate}')) {
+        formattedUrl = url.replace('{attribution_affiliate}', this.attribution.affiliate)
+      }
+
+      if (url.includes('{attribution_campaign}')) {
+        formattedUrl = url.replace('{attribution_campaign}', this.attribution.campaign)
+      }
+
+      return formattedUrl
+    },
+
+    /*
     ** Get promotions
     */
     async getPromotions () {
@@ -337,7 +397,8 @@ export default {
           timeout: 15 * 1000,
           params: {
             uuid: this.uuid,
-            slug: this.slug
+            slug: this.slug,
+            applicant: this.applicant
           }
         })).data.promotions
 
@@ -416,16 +477,18 @@ export default {
         })
       } catch (err) { }
 
+      const promotionUrl = this.getParsedPromotionUrl(promotion.url)
+
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
-        window.open(promotion.url)
+        window.open(promotionUrl)
         this.promotions[index].is_redirecting = false
         return
       }
 
       // redirect existing tab
-      window.location.replace(promotion.url)
-      window.location.href = promotion.url
+      window.location.replace(promotionUrl)
+      window.location.href = promotionUrl
       this.promotions[index].is_redirecting = false
     },
 
@@ -511,8 +574,16 @@ export default {
     /*
     ** init custom event listeners
     */
-    initEventListeners () {
+    initFpgEventListeners () {
       const self = this
+
+      // init the plugin
+      document.addEventListener('fpg:init', this.initWebComponent)
+
+      // set an applicant
+      document.addEventListener('fpg:applicant:set', function (evt) {
+        self.applicant = evt.detail
+      }, false)
 
       // init the carousel
       document.addEventListener('fpg:carousel:init', function (evt) {
@@ -522,6 +593,7 @@ export default {
       // init the carousel
       document.addEventListener('fpg:carousel:pause', function (evt) {
         self.carousel.isPaused = true
+        clearTimeout(this.carousel.interval)
       }, false)
 
       // init the carousel
