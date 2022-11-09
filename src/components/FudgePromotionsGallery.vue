@@ -277,6 +277,7 @@ export default {
   },
   data () {
     return {
+      clientIp: null,
       settings: {
         initOnLoad: true,
         debug: false,
@@ -322,6 +323,9 @@ export default {
         }
       }
     }, 100)
+
+    // set client IP address
+    this.setClientIp()
   },
   methods: {
 
@@ -348,6 +352,61 @@ export default {
       this.setAttributionDetails()
       this.getPromotions()
       this.logPromotionSession()
+    },
+
+    /*
+    ** Get the client hostname
+    */
+    getRequestHostname () {
+      try {
+        return window.location.hostname
+      } catch (err) { }
+
+      return null
+    },
+
+    /*
+    ** Set the client IP address
+    */
+    async setClientIp () {
+      try {
+
+        // use cache
+        if (sessionStorage.getItem('fpg__client-ip')) {
+          this.clientIp = sessionStorage.getItem('fpg__client-ip')
+          return
+        }
+
+        // pull & set fresh IP
+        const ip = (await this.getAxiosInstance().get('https://api.ipify.org?format=json', {
+          timeout: 10 * 1000
+        })).data.ip
+
+        if (ip) {
+          this.clientIp = ip
+
+          try {
+            localStorage.setItem('fpg__client-ip', this.clientIp)
+            sessionStorage.setItem('fpg__client-ip', this.clientIp)
+          } catch (err) { }
+        }
+
+      } catch (err) { }
+    },
+
+    /*
+    ** Get the client IP address
+    */
+    getClientIp () {
+      let ip = '127.0.0.1'
+
+      try {
+        if (localStorage.getItem('fpg__client-ip')) {
+          ip = localStorage.getItem('fpg__client-ip')
+        }
+      } catch (err) { }
+
+      return ip
     },
 
     /*
@@ -436,7 +495,11 @@ export default {
           params: {
             uuid: this.uuid,
             slug: this.slug,
-            applicant: this.applicant
+            applicant: this.applicant,
+            client: {
+              hostname: this.getRequestHostname(),
+              ip: this.getClientIp()
+            }
           }
         })).data.promotions
 
@@ -475,7 +538,11 @@ export default {
         await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_session',
           uuid: this.uuid,
-          slug: this.slug
+          slug: this.slug,
+          client: {
+            hostname: this.getRequestHostname(),
+            ip: this.getClientIp()
+          }
         }, {
           timeout: 5 * 1000
         })
@@ -499,7 +566,11 @@ export default {
           action: 'record_favourite',
           promotion_id: promotion.id,
           uuid: this.uuid,
-          slug: this.slug
+          slug: this.slug,
+          client: {
+            hostname: this.getRequestHostname(),
+            ip: this.getClientIp()
+          }
         }, {
           timeout: 10 * 1000
         })
@@ -524,7 +595,11 @@ export default {
           action: 'record_click',
           promotion_id: promotion.id,
           uuid: this.uuid,
-          slug: this.slug
+          slug: this.slug,
+          client: {
+            hostname: this.getRequestHostname(),
+            ip: this.getClientIp()
+          }
         }, {
           timeout: 3 * 1000
         })
