@@ -2,11 +2,22 @@
   <div>
 
     <article v-if="isLoading" class="fpg-wrapper fpg-text-center">
-      <div class="fpg-border-spinner fpg-border-spinner-primary fpg-mb-1" role="status"></div>
-      <h2 class="fpg-main-title">Loading promotions...</h2>
-      <p class="fpg-main-subtitle">
-        We're just loading available promotions, please wait.
-      </p>
+      <article v-if="getOptions().initOnLoad">
+        <div class="fpg-border-spinner fpg-border-spinner-primary fpg-mb-1" role="status"></div>
+        <h2 class="fpg-main-title">Loading promotions...</h2>
+        <p class="fpg-main-subtitle">
+          We're just loading available promotions, please wait.
+        </p>
+      </article>
+      <article v-else>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48" height="48" class="fpg-mb-1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+        </svg>
+        <h2 class="fpg-main-title">Just a moment...</h2>
+        <p class="fpg-main-subtitle">
+          You'll soon be able to see our available promotions.
+        </p>
+      </article>
     </article>
     <article v-else>
       <div v-if="promotions.length <= 0" class="fpg-wrapper fpg-text-center">
@@ -267,6 +278,8 @@ export default {
   data () {
     return {
       settings: {
+        initOnLoad: true,
+        debug: false,
         autoplay: false,
         controls: true,
         delay: 5000
@@ -291,11 +304,23 @@ export default {
     }
   },
   mounted () {
+    if (this.getOptions().debug) {
+      console.log('FPG: mounted hook has executed')
+    }
+
     this.initFpgEventListeners()
 
     // delay to give event listeners time to set
     setTimeout(() => {
-      this.initWebComponent()
+      this.dispatchPluginEvent('fpg:on:load')
+
+      if (this.getOptions().initOnLoad) {
+        this.initWebComponent()
+      } else {
+        if (this.getOptions().debug) {
+          console.log('FPG: initOnLoad has been set to false, you must call the fpg:init event to run the component.')
+        }
+      }
     }, 100)
   },
   methods: {
@@ -315,7 +340,11 @@ export default {
     ** Kick-start the web component
     */
     initWebComponent () {
-      this.dispatchPluginEvent('fpg:on:load')
+      if (this.getOptions().debug) {
+        console.log('FPG: initWebComponent has been called')
+      }
+
+      this.dispatchPluginEvent('fpg:on:init')
       this.setAttributionDetails()
       this.getPromotions()
       this.logPromotionSession()
@@ -377,10 +406,18 @@ export default {
       let formattedUrl = url
 
       if (url.includes('{attribution_affiliate}')) {
+        if (this.getOptions().debug) {
+          console.log('FPG: setting affiliate via URL method')
+        }
+
         formattedUrl = url.replace('{attribution_affiliate}', this.attribution.affiliate)
       }
 
       if (url.includes('{attribution_campaign}')) {
+        if (this.getOptions().debug) {
+          console.log('FPG: setting campaign via URL method')
+        }
+
         formattedUrl = url.replace('{attribution_campaign}', this.attribution.campaign)
       }
 
@@ -419,7 +456,12 @@ export default {
           this.initCarousel()
         }
 
-      } catch (err) { }
+      } catch (err) {
+        if (this.getOptions().debug) {
+          console.log('FPG: getPromotions request error, error follows...')
+          console.log(err)
+        }
+      }
 
       this.isLoading = false
     },
@@ -437,7 +479,12 @@ export default {
         }, {
           timeout: 5 * 1000
         })
-      } catch (err) { }
+      } catch (err) {
+        if (this.getOptions().debug) {
+          console.log('FPG: logPromotionSession request error, error follows...')
+          console.log(err)
+        }
+      }
     },
 
     /*
@@ -456,7 +503,12 @@ export default {
         }, {
           timeout: 10 * 1000
         })
-      } catch (err) { }
+      } catch (err) {
+        if (this.getOptions().debug) {
+          console.log('FPG: logFavouritePromotion request error, error follows...')
+          console.log(err)
+        }
+      }
     },
 
     /*
@@ -476,9 +528,19 @@ export default {
         }, {
           timeout: 3 * 1000
         })
-      } catch (err) { }
+      } catch (err) {
+        if (this.getOptions().debug) {
+          console.log('FPG: redirectToPromotion request error, error follows...')
+          console.log(err)
+        }
+      }
 
       const promotionUrl = this.getParsedPromotionUrl(promotion.url)
+
+      if (this.getOptions().debug) {
+        console.log('FPG: promotion URL looks like...')
+        console.log(promotionUrl)
+      }
 
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
@@ -512,7 +574,8 @@ export default {
       clearTimeout(this.carousel.interval)
       this.carousel.interval = setTimeout(() => {
 
-        if (this.carousel.slides.current >= this.carousel.slides.initialTotal) {
+        if (this.carousel.slides.current >= this.carousel.slides.initialTotal-1) {
+          this.carousel.slides.current = 0
           this.initCarousel()
           return
         }
@@ -546,7 +609,8 @@ export default {
         return
       }
 
-      if (this.carousel.slides.current >= this.carousel.slides.initialTotal) {
+      if (this.carousel.slides.current >= this.carousel.slides.initialTotal-1) {
+        this.carousel.slides.current = 0
         return
       }
 
@@ -568,7 +632,10 @@ export default {
       try {
         document.dispatchEvent(new Event(evtName))
       } catch (err) {
-        console.warn(err)
+        if (this.getOptions().debug) {
+          console.log(`FPG: (${evtName}) dispatchPluginEvent error, error follows...`)
+          console.log(err)
+        }
       }
     },
 
@@ -577,6 +644,10 @@ export default {
     */
     initFpgEventListeners () {
       const self = this
+
+      if (this.getOptions().debug) {
+        console.log('FPG: initFpgEventListeners has been called')
+      }
 
       // init the plugin
       document.addEventListener('fpg:init', this.initWebComponent)
