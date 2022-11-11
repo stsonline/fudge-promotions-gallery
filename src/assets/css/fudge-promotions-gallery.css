@@ -203,7 +203,9 @@
 
 .fpg-list-card-media {
   min-width: 275px;
+  max-width: 275px;
   min-height: 95px;
+  max-height: 95px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
