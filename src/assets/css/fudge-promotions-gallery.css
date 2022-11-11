@@ -337,6 +337,7 @@
 }
 
 .fpg-favourite-button {
+  position: relative;
   height: 37px;
   width: 37px;
   display: -webkit-inline-box;
@@ -360,6 +361,48 @@
   stroke: #e11d48;
 }
 
+.fpg-favourite-tooltip {
+  position: absolute;
+  animation: hideFavouriteTooltip 0s ease-in 3s;
+  animation-fill-mode: forwards;
+  top: 44px;
+  left: -60px;
+  z-index: 1;
+}
+
+.fpg-favourite-tooltip span {
+  position: absolute;
+  width: 126px;
+  color: #db2777;
+  background: #fce7f3;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.fpg-favourite-tooltip span:after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid #fce7f3;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+
+@keyframes hideFavouriteTooltip {
+  to {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+}
 
 /* progress */
 .fpg-gallery-cell-progress {
@@ -507,6 +550,7 @@
 .fpg-text-center {
   text-align: center;
 }
+
 
 /* responsive */
 @media (max-width: 992px) {
