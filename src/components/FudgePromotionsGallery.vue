@@ -268,7 +268,7 @@ export default {
     },
     displayType: {
       type: String,
-      default: 'list'
+      default: 'carousel'
     },
     options: {
       type: String,
@@ -730,7 +730,16 @@ export default {
       // set an applicant
       document.addEventListener('fpg:applicant:set', function (evt) {
         self.applicant = evt.detail
-        self.setAttributionDetails()
+
+        if (self.getOptions().debug) {
+          console.log(`FPG: fpg:applicant:set event dispatched, event data follows...`)
+          console.log(evt)
+        }
+
+        setTimeout(() => {
+          self.setAttributionDetails()
+          self.getPromotions()
+        }, 50)
       }, false)
 
       // init the carousel
