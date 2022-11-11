@@ -280,7 +280,7 @@ export default {
     },
     displayType: {
       type: String,
-      default: 'list'
+      default: 'carousel'
     },
     options: {
       type: String,
