@@ -204,7 +204,7 @@
 
             <!-- list media -->
             <div class="fpg-list-card-media">
-              <img v-if="promotion.image_type == 'url'" :src="promotion.image" :alt="promotion.title" class="fpg-img-fluid" />
+              <img v-if="promotion.image_type == 'url'" src="Promotion image unavailable" :alt="promotion.title" class="fpg-img-fluid" />
               <img v-else-if="promotion.image_type == 'base64'" :src="`data:image/png;base64,${promotion.image}`" :alt="promotion.title" class="fpg-img-fluid" />
               <div v-else-if="promotion.image_type == 'svg'" v-html="promotion.image" class="fpg-img-fluid"></div>
             </div>
@@ -268,7 +268,7 @@ export default {
     },
     displayType: {
       type: String,
-      default: 'carousel'
+      default: 'list'
     },
     options: {
       type: String,
