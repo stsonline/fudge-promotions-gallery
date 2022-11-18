@@ -575,7 +575,6 @@ export default {
         if (promotions.length > 0) {
           for (const [index, promotion] of promotions.entries()) {
             promotion.is_favourited = false
-            promotion.is_features_expanded = false
             promotion.is_redirecting = false
             promotion.current_progress = 0
 
