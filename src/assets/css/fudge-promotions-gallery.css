@@ -494,6 +494,7 @@
 
 /* images */
 .fpg-img-fluid {
+  border-radius: inherit;
   max-width: 100%;
   height: auto;
 }

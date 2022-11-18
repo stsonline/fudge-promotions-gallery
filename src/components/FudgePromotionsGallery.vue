@@ -79,12 +79,12 @@
 
               <!-- gallery actions -->
               <div class="fpg-gallery-cell-actions">
-                <button :disabled="promotion.is_redirecting" @click="redirectToPromotion(promotion, promotionIndex)" type="button" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_redirecting }">
+
+                <a v-if="isIos" :href="getParsedPromotionUrl(promotion.url)" target="_blank" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" @click="logPromotionClick(promotion, promotionIndex)">{{ promotion.url_title }}</a>
+                <button v-else :disabled="promotion.is_redirecting" @click="redirectToPromotion(promotion, promotionIndex)" type="button" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_redirecting }">
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
-
-                <a style="display: none; opacity: 0; height: 0;" :data-redirectTo="promotionIndex" :href="promotion.url" target="_blank">Open</a>
 
                 <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
                   <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
@@ -169,13 +169,11 @@
 
               <!-- gallery actions -->
               <div class="fpg-gallery-cell-actions">
-                <button :disabled="promotion.is_redirecting" @click="redirectToPromotion(promotion, promotionIndex)" type="button" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_redirecting }">
+                <a v-if="isIos" :href="getParsedPromotionUrl(promotion.url)" target="_blank" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" @click="logPromotionClick(promotion, promotionIndex)">{{ promotion.url_title }}</a>
+                <button v-else :disabled="promotion.is_redirecting" @click="redirectToPromotion(promotion, promotionIndex)" type="button" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_redirecting }">
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
-
-                <a style="display: none; opacity: 0; height: 0;" :data-redirectTo="promotionIndex" :href="promotion.url" target="_blank">Open</a>
-
                 <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
                   <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -236,13 +234,11 @@
 
               <!-- gallery actions -->
               <div class="fpg-list-card-actions">
-                <button :disabled="promotion.is_redirecting" @click="redirectToPromotion(promotion, promotionIndex)" type="button" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_redirecting }">
+                <a v-if="isIos" :href="getParsedPromotionUrl(promotion.url)" target="_blank" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" @click="logPromotionClick(promotion, promotionIndex)">{{ promotion.url_title }}</a>
+                <button v-else :disabled="promotion.is_redirecting" @click="redirectToPromotion(promotion, promotionIndex)" type="button" class="fpg-btn fpg-btn-primary fpg-btn-redirecter fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_redirecting }">
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
-
-                <a style="display: none; opacity: 0; height: 0;" :data-redirectTo="promotionIndex" :href="promotion.url" target="_blank">Open</a>
-
                 <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
                   <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -333,6 +329,7 @@ export default {
   data () {
     return {
       clientIp: null,
+      isIos: false,
       settings: {
         initOnLoad: true,
         debug: false,
@@ -366,6 +363,8 @@ export default {
     }
   },
   mounted () {
+    this.isIos = this.isIosDevice()
+
     if (this.getOptions().debug) {
       console.log('FPG: mounted hook has executed')
     }
@@ -400,6 +399,33 @@ export default {
       }
 
       return this.$axios
+    },
+
+    /*
+    ** Is this an Apple device
+    */
+    isIosDevice () {
+      try {
+
+        if (window.innerWidth > 992) {
+          return false
+        }
+
+        const isIOS = /iPad|iPhone/.test(navigator.userAgent) && !window.MSStream;
+
+        if (isIOS) {
+          return true
+        }
+
+        return false
+      } catch (err) {
+        if (this.getOptions().debug) {
+          console.log('FPG: iOS device check failed')
+          console.log(err)
+        }
+      }
+
+      return false
     },
 
     /*
@@ -677,11 +703,8 @@ export default {
     /*
     ** Rediret to promotion
     */
-    async redirectToPromotion (promotion, index) {
+    async logPromotionClick (promotion, index) {
       this.dispatchPluginEvent('fpg:on:promotion-click')
-      this.promotions[index].is_redirecting = true
-
-      // record click
       try {
         await this.getAxiosInstance().post(`${this.getApiUrl()}/promotions`, {
           action: 'record_click',
@@ -701,6 +724,24 @@ export default {
           console.log(err)
         }
       }
+    },
+
+    /*
+    ** Rediret to promotion
+    */
+    async redirectToPromotion (promotion, index) {
+      this.dispatchPluginEvent('fpg:on:promotion-click')
+      this.promotions[index].is_redirecting = true
+
+      // record click
+      try {
+        await this.logPromotionClick(promotion, index)
+      } catch (err) {
+        if (this.getOptions().debug) {
+          console.log('FPG: redirectToPromotion request error, error follows...')
+          console.log(err)
+        }
+      }
 
       const promotionUrl = this.getParsedPromotionUrl(promotion.url)
 
@@ -711,22 +752,9 @@ export default {
 
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
-        let redirector = document.querySelector(`[data-redirectTo="${index}"]`)
-        if (!redirector) {
-          let fpg = document.querySelector('fudge-promotions-gallery')
-          if (fpg) {
-            redirector = fpg.shadowRoot.querySelector(`[data-redirectTo="${index}"]`)
-          }
-        }
 
-        if (redirector) {
-          redirector.href = promotionUrl
-          redirector.click()
-        } else {
-          if (this.getOptions().debug) {
-            console.log('FPG: redirector element not found')
-            console.log(redirector)
-          }
+        if (!this.isIos) {
+          window.open(promotionUrl, '_blank')
         }
 
         this.promotions[index].is_redirecting = false
