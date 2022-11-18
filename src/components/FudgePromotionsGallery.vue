@@ -224,7 +224,7 @@
               <div class="fpg-list-card-meta">
                 <div>
                   <h2 class="fpg-list-card-title">{{ promotion.title }}</h2>
-                  <p class="fpg-list-card-subtitle fpg-text-truncate">{{ promotion.subtitle }}</p>
+                  <p class="fpg-list-card-subtitle">{{ promotion.subtitle }}</p>
                 </div>
               </div>
 
@@ -250,6 +250,40 @@
 
             </div>
 
+            <div v-if="promotion.features_formatted && promotion.features_formatted.length > 0" class="fpg-list-card-features">
+              <div
+                class="fpg-list-card-accordion"
+                v-for="(feature, featureIndex) in promotion.features_formatted.slice(0, 3)"
+                :key="featureIndex">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" fill="#fbbf24" class="fpg-list-card-star">
+                    <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                  </svg>
+                  <p>
+                    {{ feature.content.substring(0, list.features.maxLength) }}
+                    <span v-if="feature.content.length > list.features.maxLength && !feature.is_feature_expanded">...</span>
+                  </p>
+                  <div v-if="feature.content.length > list.features.maxLength">
+                    <p v-show="feature.is_feature_expanded">
+                      {{ feature.content.substring(list.features.maxLength, feature.content.length) }}
+                    </p>
+                  </div>
+                </div>
+                <div v-if="feature.content.length > list.features.maxLength" class="fpg-ml-auto">
+                  <div v-if="!feature.is_feature_expanded" @click="feature.is_feature_expanded = true" class="fpg-cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" fill="none" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div v-if="feature.is_feature_expanded" style="display: inline;" @click="feature.is_feature_expanded = false" class="fpg-cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" fill="none" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -272,7 +306,7 @@ export default {
     },
     uuid: {
       type: String,
-      default: 'ddb5f29d-63f9-4679-8b43-f504b5b8f9f6'
+      default: '12376b10-7723-4061-83e8-b2247b78e2d5'
     },
     slug: {
       type: String,
@@ -280,7 +314,7 @@ export default {
     },
     displayType: {
       type: String,
-      default: 'carousel'
+      default: 'list'
     },
     options: {
       type: String,
@@ -306,6 +340,11 @@ export default {
           displayCurrent: 1,
           total: 0,
           initialTotal: 0
+        }
+      },
+      list: {
+        features: {
+          maxLength: 33
         }
       },
       isLoading: true,
@@ -536,8 +575,23 @@ export default {
         if (promotions.length > 0) {
           for (const [index, promotion] of promotions.entries()) {
             promotion.is_favourited = false
+            promotion.is_features_expanded = false
             promotion.is_redirecting = false
             promotion.current_progress = 0
+
+            if (promotion.features.length) {
+              let formattedFeatures = []
+
+              for (const [index, feature] of promotion.features.entries()) {
+                formattedFeatures.push({
+                  content: feature,
+                  is_feature_expanded: false
+                })
+              }
+
+              promotion.features_formatted = formattedFeatures
+            }
+
           }
         }
 

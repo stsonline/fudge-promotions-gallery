@@ -3,6 +3,9 @@
 :host {
   --fpg-color-primary: #9333ea;
   --fpg-color-primary-darken: #7e22ce;
+  --fpg-color-secondary: #64748b;
+  --fpg-color-secondary-darken: #475569;
+  --fpg-color-favourite: #e11d48;
 }
 
 /* resets */
@@ -122,7 +125,7 @@
   font-size: 12px;
   border-top-right-radius: 12px;
   border-bottom-left-radius: 12px;
-  color: #475569;
+  color: var(--fpg-color-secondary-darken);
   background-color: rgba(255, 255, 255, .9);
 }
 
@@ -147,7 +150,7 @@
   background-size: 18px;
   background-repeat: no-repeat;
   background-position: left center;
-  color: #64748b;
+  color: var(--fpg-color-secondary);
 }
 
 .fpg-gallery-cell-active {
@@ -165,14 +168,14 @@
 }
 
 .fpg-gallery-cell-content .fpg-gallery-cell-title {
-  color: #475569;
+  color: var(--fpg-color-secondary-darken);
   font-size: 17px;
   margin-bottom: 2.75px;
   font-weight: 600;
 }
 
 .fpg-gallery-cell-content .fpg-gallery-cell-subtitle {
-  color: #64748b;
+  color: var(--fpg-color-secondary);
   font-size: 14px;
   font-weight: 400;
 }
@@ -182,7 +185,7 @@
 }
 
 
-/* list cards */
+/* lists */
 .fpg-list-card {
   padding: 16px;
   border-radius: 12px;
@@ -196,13 +199,15 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   border: 1px solid #f5f5f4;
   margin-bottom: 40px;
   background-color: #f8fafc;
 }
 
 .fpg-list-card-media {
-  min-width: 275px;
+  width: 30%;
   max-width: 275px;
   min-height: 95px;
   max-height: 95px;
@@ -219,6 +224,7 @@
 }
 
 .fpg-list-card-meta {
+  width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -261,10 +267,49 @@
 }
 
 .fpg-list-card-meta .fpg-list-card-subtitle {
-  color: #64748b;
+  color: var(--fpg-color-secondary);
   font-size: 16px;
   font-weight: 400;
 }
+
+.fpg-list-card-features {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.fpg-list-card-accordion {
+  position: relative;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 33%;
+  flex: 0 1 33%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--fpg-color-secondary);
+  font-size: 14px;
+  padding: 8px 8px 8px 12px;
+  background-color: #edf1f5;
+  border-radius: 8px;
+}
+
+.fpg-list-card-star {
+  position: absolute;
+  top: -5px;
+  left: -6px;
+}
+
 
 /* buttons */
 .fpg-btn {
@@ -309,8 +354,8 @@
 }
 
 .fpg-gallery-control:hover {
-  border-color: #64748b;
-  color: #64748b;
+  border-color: var(--fpg-color-secondary);
+  color: var(--fpg-color-secondary);
 }
 
 .fpg-btn-sm {
@@ -357,8 +402,8 @@
 }
 
 .fpg-favourite-button:hover .fpg-favourite-icon {
-  fill: #e11d48;
-  stroke: #e11d48;
+  fill: var(--fpg-color-favourite);
+  stroke: var(--fpg-color-favourite);
 }
 
 .fpg-favourite-tooltip {
@@ -458,7 +503,7 @@
 .fpg-main-title {
   font-size: 22px;
   font-weight: 600;
-  color: #475569;
+  color: var(--fpg-color-secondary-darken);
   margin-bottom: 12px !important;
 }
 
@@ -497,6 +542,7 @@
   position: absolute;
   right: 0;
 }
+
 
 /* spinners */
 .fpg-border-spinner {
@@ -540,15 +586,24 @@
   }
 }
 
+
 /* utilities */
-.fpg-text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.fpg-ml-auto {
+  margin-left: auto;
+}
+
+.fpg-cursor-pointer {
+  cursor: pointer;
 }
 
 .fpg-text-center {
   text-align: center;
+}
+
+.fpg-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 
@@ -569,10 +624,11 @@
   }
 
   .fpg-list-card-meta {
+    width: 100%;
     display: block;
     text-align: center;
     padding: 0;
-    margin: 16px 0;
+    margin: 16px auto;
   }
 
   .fpg-list-card-actions {
@@ -584,14 +640,31 @@
     text-align: center;
   }
 
+  .fpg-list-card-features {
+    margin-top: 16px;
+  }
+
 }
 
 @media (max-width: 767px) {
 
   /* lists */
   .fpg-list-card-media {
-    min-width: auto;
+    width: 100%;
     min-height: auto;
+  }
+
+  .fpg-list-card-features {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .fpg-list-card-accordion {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
 
 }
