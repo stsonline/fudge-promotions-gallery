@@ -315,7 +315,7 @@ export default {
     },
     uuid: {
       type: String,
-      default: 'ddb5f29d-63f9-4679-8b43-f504b5b8f9f6'
+      default: '12376b10-7723-4061-83e8-b2247b78e2d5'
     },
     slug: {
       type: String,
@@ -720,6 +720,7 @@ export default {
         }
 
         if (redirector) {
+          redirector.href = promotionUrl
           redirector.click()
         } else {
           if (this.getOptions().debug) {
