@@ -83,6 +83,9 @@
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
+
+                <a style="display: none; opacity: 0; height: 0;" :data-redirectTo="promotionIndex" :href="promotion.url" target="_blank">Open</a>
+
                 <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
                   <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -170,6 +173,9 @@
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
+
+                <a style="display: none; opacity: 0; height: 0;" :data-redirectTo="promotionIndex" :href="promotion.url" target="_blank">Open</a>
+
                 <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
                   <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -234,6 +240,9 @@
                   <div v-if="promotion.is_redirecting" class="fpg-border-spinner fpg-border-spinner-redirecter fpg-border-spinner-white fpg-mb-1" role="status"></div>
                   <div v-else>{{ promotion.url_title }}</div>
                 </button>
+
+                <a style="display: none; opacity: 0; height: 0;" :data-redirectTo="promotionIndex" :href="promotion.url" target="_blank">Open</a>
+
                 <button :disabled="promotion.is_favourited" @click="logFavouritePromotion(promotion, promotionIndex)" title="Show more promotions like this." type="button" class="fpg-btn fpg-favourite-button fpg-btn-sm" :class="{ 'fpg-btn-disabled': promotion.is_favourited }">
                   <svg v-if="promotion.is_favourited" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="#10b981" width="16" height="16">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -702,7 +711,10 @@ export default {
 
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
-        window.open(promotionUrl)
+        const redirector = document.querySelector(`[data-redirectTo="${index}"]`)
+        if (redirector) {
+          redirector.click()
+        }
         this.promotions[index].is_redirecting = false
         return
       }
