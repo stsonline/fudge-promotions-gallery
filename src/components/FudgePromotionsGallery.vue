@@ -715,7 +715,7 @@ export default {
         if (!redirector) {
           let fpg = document.querySelector('fudge-promotions-gallery')
           if (fpg) {
-            redirector = fudge.shadowRoot.querySelector(`[data-redirectTo="${index}"]`)
+            redirector = fpg.shadowRoot.querySelector(`[data-redirectTo="${index}"]`)
           }
         }
 
