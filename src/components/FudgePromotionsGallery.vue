@@ -711,10 +711,24 @@ export default {
 
       // redirect via new tab
       if (promotion.url_opens_in_new_tab) {
-        const redirector = document.querySelector(`[data-redirectTo="${index}"]`)
-        if (redirector) {
-          redirector.click()
+        let redirector = document.querySelector(`[data-redirectTo="${index}"]`)
+        if (!redirector) {
+          let fpg = document.querySelector('fudge-promotions-gallery')
+          if (fpg) {
+            redirector = fudge.shadowRoot.querySelector(`[data-redirectTo="${index}"]`)
+          }
         }
+
+        if (redirector) {
+          redirector.href = promotionUrl
+          redirector.click()
+        } else {
+          if (this.getOptions().debug) {
+            console.log('FPG: redirector element not found')
+            console.log(redirector)
+          }
+        }
+
         this.promotions[index].is_redirecting = false
         return
       }
